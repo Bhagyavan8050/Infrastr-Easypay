@@ -171,7 +171,7 @@ kubectl get svc
 
 ---
 
-## 🧠 Future Enhancements
+##  Future Enhancements
 - Add **Prometheus + Grafana** monitoring
 - Add **ELK / EFK logging**
 - Integrate **Vault** for secret management
@@ -180,16 +180,16 @@ kubectl get svc
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 **Bhagyavan B**  
 DevOps Engineer | Cloud & Automation Enthusiast  
-📧 [bhagyavan8050@gmail.com](mailto:bhagyavan8050@gmail.com)  
-🌐 [GitHub: Bhagyavan8050](https://github.com/Bhagyavan8050)
+ [bhagyavan8050@gmail.com](mailto:bhagyavan8050@gmail.com)  
+ [GitHub: Bhagyavan8050](https://github.com/Bhagyavan8050)
 
 ---
 
-## 🏁 Summary
+##  Summary
 
 The **EasyPay High-Availability Infrastructure** project demonstrates an end-to-end automated DevOps pipeline using modern tools — achieving **zero manual intervention**, **auto-healing**, and **100% uptime** deployment for a critical payment application.
 
