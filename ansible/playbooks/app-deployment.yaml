@@ -1,0 +1,21 @@
+- name: Deploy app manifests from control plane
+  hosts: tag_Name_easypay-master
+  gather_facts: no
+  become: yes
+  tasks:
+    - name: Copy kubernetes manifests to master
+      copy:
+        src: "{{ item.src }}"
+        dest: "/home/ubuntu/manifests/{{ item.dest }}"
+        owner: ubuntu
+      loop:
+        - { src: "../../kubernetes/deployments/app-deployment.yaml", dest: "app-deployment.yaml" }
+        - { src: "../../kubernetes/deployments/mysql-deployment.yaml", dest: "mysql-deployment.yaml" }
+        - { src: "../../kubernetes/deployments/redis-deployment.yaml", dest: "redis-deployment.yaml" }
+        - { src: "../../kubernetes/services/app-service.yaml", dest: "app-service.yaml" }
+        - { src: "../../kubernetes/services/db-service.yaml", dest: "db-service.yaml" }
+
+    - name: Apply manifests
+      shell: kubectl apply -f /home/ubuntu/manifests/
+      environment:
+        KUBECONFIG: /home/ubuntu/.kube/config

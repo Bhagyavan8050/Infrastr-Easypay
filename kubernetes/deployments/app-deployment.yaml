@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: easypay-app
+  labels:
+    app: easypay
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: easypay
+  template:
+    metadata:
+      labels:
+        app: easypay
+    spec:
+      containers:
+      - name: easypay
+        image: nginx:stable
+        ports:
+        - containerPort: 80
+        env:
+          - name: DATABASE_HOST
+            value: mysql

@@ -1,0 +1,39 @@
+- name: Add Kubernetes apt-key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+
+- name: Add Kubernetes repo
+  apt_repository:
+    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+    state: present
+
+- name: Install kubeadm, kubelet and kubectl
+  apt:
+    name:
+      - kubelet
+      - kubeadm
+      - kubectl
+    update_cache: yes
+
+- name: Hold Kubernetes packages
+  apt:
+    name:
+      - kubelet
+      - kubeadm
+      - kubectl
+    state: present
+    allow_unauthenticated: yes
+
+- name: Disable swap (required by kubeadm)
+  command: swapoff -a
+  args:
+    warn: no
+  when: ansible_swaptotal_mb > 0
+
+- name: Ensure swap entry removed in /etc/fstab
+  replace:
+    path: /etc/fstab
+    regexp: '(^.*swap.*$)'
+    replace: '# \g<0>'
+  backup: yes

@@ -1,0 +1,7 @@
+- name: Ensure namespace exists
+  kubernetes.core.k8s:
+    api_version: v1
+    kind: Namespace
+    name: easypay
+    state: present
+    kubeconfig: /home/ubuntu/.kube/config
